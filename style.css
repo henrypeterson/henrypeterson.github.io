@@ -1,8 +1,7 @@
-#boxContainer {
+#board {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    width: 175px;
     
 }
 

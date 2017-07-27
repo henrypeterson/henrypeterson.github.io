@@ -1,5 +1,5 @@
-var rows = 3;
-var cols = 3;
+var rows = 10;
+var cols = 10;
 
 var bod = document.getElementsByTagName('body')[0];
 var currentFrame = new board(cols, rows);
@@ -8,38 +8,52 @@ var currentColor = 'purple';
 var frame = 0;
 var frames = [];
 
-$(document).ready(function(){
-    $('#newFrame').click(function(){
+function next(){
+    if(frame < frames.length){
         currentFrame.updateTiles();
-        frames.push(currentFrame.tiles); 
-        frame++;
-        currentFrame.reloadBoard();
-    });
-});
+        delete frames[frame]
+        frames[frame] = currentFrame.tiles;
+
+        if(frame < frames.length - 1)
+            frame++;
+        currentFrame.loadFrame(frames[frame]);
+    }
+}
+
+function prev(){
+    if(frame > 0){
+        currentFrame.updateTiles();
+        delete frames[frame]
+        frames[frame] = currentFrame.tiles;
+
+        frame--;
+        currentFrame.loadFrame(frames[frame]);
+    }
+}
+
+function newf(){
+    currentFrame.updateTiles();
+    frame++;
+    frames.splice(frame, 0, currentFrame.tiles); 
+    currentFrame.reloadBoard();
+}
 
 $(document).ready(function(){
-    $('#prevFrame').click(function(){
-        if(frame > 0){
-            currentFrame.updateTiles();
-            delete frames[frame]
-            frames[frame] = currentFrame.tiles;
-
-            frame--;
-            currentFrame.loadFrame(frames[frame]);
-        }
+    $(document).bind('keydown', function(e){
+        if(e.keyCode == 32)
+            newf();
     });
-});
+    $('#newFrame').click(newf);
 
-$(document).ready(function(){
-    $('#nextFrame').click(function(){
-        if(frame < frames.length){
-            currentFrame.updateTiles();
-            delete frames[frame]
-            frames[frame] = currentFrame.tiles;
-
-            if(frame < frames.length - 1)
-                frame++;
-            currentFrame.loadFrame(frames[frame]);
-        }
+    $(document).bind('keydown', function(e){
+        if(e.keyCode == 65)
+            prev();
     });
+    $('#prevFrame').click(prev);
+
+    $(document).bind('keydown', function(e){
+        if(e.keyCode == 68)
+            next();
+    });
+    $('#nextFrame').click(next);
 });

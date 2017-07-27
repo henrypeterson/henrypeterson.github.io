@@ -9,3 +9,7 @@ field.prototype.addTile = function(){
     this.tileCount++;
     return newTile;
 }
+
+field.prototype.makeElement = function(name){
+    this.element = document.getElementById(name);
+}

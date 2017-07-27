@@ -1,9 +1,6 @@
 function pallette(){
     field.call(this);
-
-    this.element = document.createElement('div'); 
-    this.element.setAttribute('id', 'pallette');
-
+    this.makeElement('pallette');
     this.populate();
 }
 

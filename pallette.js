@@ -14,8 +14,11 @@ pallette.prototype.populate = function(){
         var newElem = this.addTile();
         newElem.element.style.backgroundColor = this.colors[i];
         this.element.appendChild(newElem.element);
-        newElem.element.addEventListener('click', function(){ 
-            currentColor = event.target.style.backgroundColor;
-        });
     }
 }
+
+$(document).ready(function(){
+    $("#pallette .box").click(function(){
+        currentColor = $(this).css('background-color');
+    });
+});

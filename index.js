@@ -6,4 +6,5 @@ var currentColor = 'purple';
 bod.appendChild(b.element);
 bod.appendChild(p.element);
 
-b.populate(5, 5);
+b.populate(6, 6);
+

@@ -1,14 +1,34 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    margin-left: 0;
+    margin-bottom: 20px;
+    padding: 0;
+    background-color: #add8e6;
+    height: 100px;
+}
+
+#main {
+    text-align: center;
+}
+
 #board {
     display: flex;
+    margin: 0 auto;
     flex-direction: row;
     flex-wrap: wrap;
     
 }
 
 #pallette {
-    position: fixed;
-    right: 20px;
-    top: 10px;
+    margin: 10px auto;
+}
+
+#pallette .box{
+    display: inline-block;
 }
 
 .box {
@@ -23,6 +43,27 @@
     border: 1px solid white;
 }
 
-.button {
+button {
    margin: 5px; 
+   font-size: 30px;
+   color: #aaa;
+   border: none;
 }
+
+button:focus {
+    outline: 3px solid #aaa ;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

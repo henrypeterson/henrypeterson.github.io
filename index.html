@@ -5,12 +5,18 @@
         <link href="style.css" rel="stylesheet">
         <title>tile</title>
     </head>
+    <header>
+    </header>
     <body>
-        <div id="board"></div>
-        <div id="pallette"></div>
-        <button type ="button" class="button" id="prevFrame">Prev Frame</button>
-        <button type ="button" class="button" id="nextFrame">Next Frame</button>
-        <button type ="button" class="button" id="newFrame">New Frame</button>
+        <div id="main">
+            <div id="board"></div>
+            <div id="pallette"></div>
+            <div id="control">
+                <button type ="button" class="button" id="prevFrame">◄</button>
+                <button type ="button" class="button" id="nextFrame">►</button>
+                <button type ="button" class="button" id="newFrame">+</button>
+            </div>
+        </div>
         <script src="./jquery.js"></script>
         <script src="./tile.js"></script>
         <script src="./field.js"></script>

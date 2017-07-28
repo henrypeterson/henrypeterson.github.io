@@ -9,12 +9,12 @@ var frame = 0;
 var frames = [];
 
 function next(){
-    if(frame < frames.length){
+    if(frame < frames.length - 1){
         currentFrame.updateTiles();
         delete frames[frame]
         frames[frame] = currentFrame.tiles;
 
-        if(frame < frames.length - 1)
+        //if(frame < frames.length - 1)
             frame++;
         currentFrame.loadFrame(frames[frame]);
     }

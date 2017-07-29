@@ -1,6 +1,7 @@
-html, body {
+body {
     margin: 0;
     padding: 0;
+    font-family: Inconsolata;
 }
 
 header {
@@ -9,10 +10,29 @@ header {
     padding: 0;
     background-color: #add8e6;
     height: 100px;
+    
+    text-align: center;
+    color: white;
+}
+
+h1 {
+    margin: auto;
+    padding: 30px;
 }
 
 #main {
+    flex: 1 0 auto;
     text-align: center;
+    margin: 20px auto;
+    max-width: 300px;
+    justify-content: center;
+}
+
+#info {
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+    width: 800px;
 }
 
 #board {
@@ -20,7 +40,17 @@ header {
     margin: 0 auto;
     flex-direction: row;
     flex-wrap: wrap;
-    
+}
+
+.spacer {
+    flex: 0 1 auto;
+    min-width: 200px;
+    font-size: 30px;
+    font-weight: bolder;
+}
+
+.spacer > p {
+    margin: 75px auto;
 }
 
 #pallette {

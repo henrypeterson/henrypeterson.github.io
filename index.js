@@ -1,59 +1,67 @@
-var rows = 10;
-var cols = 10;
+var rows   = 10;
+var cols   = 10;
+const up   = 1;
+const down = -1;
 
-var bod = document.getElementsByTagName('body')[0];
+var bod          = document.getElementsByTagName('body')[0];
 var currentFrame = new board(cols, rows);
-var p = new pallette();
+var p            = new pallette();
 var currentColor = 'purple';
-var frame = 0;
-var frames = [];
+var frame        = 0;
+var frames       = [];
 
-function next(){
-    if(frame < frames.length - 1){
-        currentFrame.updateTiles();
-        delete frames[frame]
-        frames[frame] = currentFrame.tiles;
+frames.push(currentFrame.tiles);
 
-        if(frame < frames.length - 1)
-            frame++;
-        currentFrame.loadFrame(frames[frame]);
-    }
-}
-
-function prev(){
-    if(frame > 0){
-        currentFrame.updateTiles();
-        delete frames[frame]
-        frames[frame] = currentFrame.tiles;
-
-        frame--;
-        currentFrame.loadFrame(frames[frame]);
-    }
-}
-
-function newf(){
+function changeFrame(value){
     currentFrame.updateTiles();
-    frame++;
+    delete frames[frame]
+    frames[frame] = currentFrame.tiles;
+
+    frame += value;
+    currentFrame.loadFrame(frames[frame]);
+}
+
+function nextFrame(){
+    if(frame < frames.length - 1)
+        changeFrame(up);
+    console.log(frames.length);
+}
+
+function prevFrame(){
+    if(frame > 0)
+        changeFrame(down);
+    console.log(frames.length);
+}
+
+function newFrame(){
+    currentFrame.updateTiles();
     frames.splice(frame, 0, currentFrame.tiles); 
-    currentFrame.reloadBoard();
+    frame++;
+    currentFrame.loadFrame(frames[frame - 1]);
+    console.log(frames.length);
+}
+
+function delFrame(){
+    frames.splice(frame - 1, 1);
+}
+
+function updateFrameCount(){
+    $('#label').html((frame+1) + '/' + (frames.length));
 }
 
 $(document).ready(function(){
     $(document).bind('keydown', function(e){
-        if(e.keyCode == 32)
-            newf();
+        if(e.keyCode == 83) //s delete frame
+            delFrame();
+        if(e.keyCode == 32)//space new frame
+            newFrame();
+        if(e.keyCode == 65)//a prev frame
+            prevFrame();
+        if(e.keyCode == 68)//d next frame
+            nextFrame();
+        updateFrameCount();
     });
-    $('#newFrame').click(newf);
-
-    $(document).bind('keydown', function(e){
-        if(e.keyCode == 65)
-            prev();
-    });
-    $('#prevFrame').click(prev);
-
-    $(document).bind('keydown', function(e){
-        if(e.keyCode == 68)
-            next();
-    });
-    $('#nextFrame').click(next);
+    $('#newFrame').click(newFrame);
+    $('#prevFrame').click(prevFrame);
+    $('#nextFrame').click(nextFrame);
 });

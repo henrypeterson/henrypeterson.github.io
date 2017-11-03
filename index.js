@@ -1,14 +1,17 @@
-var rows   = 10;
-var cols   = 10;
-const up   = 1;
-const down = -1;
+var rows         = 10;
+var cols         = 10;
+const up         = 1;
+const down       = -1;
 
 var bod          = document.getElementsByTagName('body')[0];
 var currentFrame = new board(cols, rows);
 var p            = new pallette();
-var currentColor = 'purple';
+var mode         = new state();
+
+var currentColor = 'black';
 var frame        = 0;
 var frames       = [];
+
 
 frames.push(currentFrame.tiles);
 
@@ -49,19 +52,30 @@ function updateFrameCount(){
     $('#label').html((frame+1) + '/' + (frames.length));
 }
 
+function getFrameAsImage(){
+    var image = currentFrame.renderCurrentFrame(15);
+    $('#render').empty();
+    $('#render').append(image);
+}
+
+
+
 $(document).ready(function(){
     $(document).bind('keydown', function(e){
         if(e.keyCode == 83) //s delete frame
             delFrame();
-        if(e.keyCode == 32)//space new frame
+        else if(e.keyCode == 32)//space new frame
             newFrame();
-        if(e.keyCode == 65)//a prev frame
+        else if(e.keyCode == 80)//p render frame
+            getFrameAsImage();
+        else if(e.keyCode == 65)//a prev frame
             prevFrame();
-        if(e.keyCode == 68)//d next frame
+        else if(e.keyCode == 68)//d next frame
             nextFrame();
         updateFrameCount();
     });
     $('#newFrame').click(newFrame);
     $('#prevFrame').click(prevFrame);
     $('#nextFrame').click(nextFrame);
+    $('#select').click(mode.nextState);
 });

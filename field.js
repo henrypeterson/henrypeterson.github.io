@@ -1,5 +1,5 @@
 function field(){
-    this.colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple', 'gray'];
+    this.colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple', 'gray', 'black', 'white'];
     this.tileCount = 0;
     this.tiles = [];
 }

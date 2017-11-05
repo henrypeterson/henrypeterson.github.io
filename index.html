@@ -9,9 +9,11 @@
     <header>
         <h1>tile</h1>
     </header>
-    <body>
+    <body ondragstart="return false;" ondrop="return false;">
         <div id="info">
-            <div class="spacer"></div>
+            <div class="spacer">
+                    <button type ="button" class="button" id="select">S</button>
+            </div>
             <div id="main">
                 <div id="board"></div>
                 <div id="pallette"></div>
@@ -20,14 +22,19 @@
                     <button type ="button" class="button" id="nextFrame">►</button>
                     <button type ="button" class="button" id="newFrame">+</button>
                 </div>
+                <div id="render"></div>
             </div>
-            <div id="label" class="spacer"><p>1/1</p></div>
+            <div class="spacer"><p id="label">1/1</p></div>
         </div>
         <script src="./jquery.js"></script>
         <script src="./tile.js"></script>
+        <script src="./state.js"></script>
         <script src="./field.js"></script>
         <script src="./board.js"></script>
         <script src="./pallette.js"></script>
+        <script src="./LZWEncoder.js"></script>
+        <script src="./NeuQuant.js"></script>
+        <script src="./GIFEncoder.js"></script>
         <script src="./index.js"></script>
     </body>
 </html>

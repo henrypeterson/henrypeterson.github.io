@@ -11,6 +11,7 @@ var mode         = new state();
 var currentColor = 'black';
 var frame        = 0;
 var frames       = [];
+var renderedFrames = [];
 
 
 frames.push(currentFrame.tiles);
@@ -53,9 +54,22 @@ function updateFrameCount(){
 }
 
 function getFrameAsImage(){
-    var image = currentFrame.renderCurrentFrame(15);
-    $('#render').empty();
+    var image = currentFrame.renderCurrentFrame(10);
+    //$('#render').empty();
     $('#render').append(image);
+}
+
+function processImages(){
+    var encoder = new GIFEncoder();
+    encoder.setRepeat(0);
+    encoder.setDelay(500);
+    encoder.start();
+    for(var i = 0; i < frames.length; i++){
+        currentFrame.loadFrame(frames[i]);
+        encoder.addFrame(currentFrame.renderCurrentFrame(10));
+    }
+    encoder.finish();
+    encoder.download("test.gif");
 }
 
 
@@ -67,7 +81,8 @@ $(document).ready(function(){
         else if(e.keyCode == 32)//space new frame
             newFrame();
         else if(e.keyCode == 80)//p render frame
-            getFrameAsImage();
+            processImages();
+            //getFrameAsImage();
         else if(e.keyCode == 65)//a prev frame
             prevFrame();
         else if(e.keyCode == 68)//d next frame

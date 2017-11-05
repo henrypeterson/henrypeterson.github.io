@@ -90,7 +90,6 @@ board.prototype.renderCurrentFrame = function(scale){
     canvas.width = scaleCols;
     canvas.height = scaleRows;
     var context = canvas.getContext('2d');
-    //var ImgData = context.createImageData(cols, rows);
     var ImgData = context.createImageData(scaleCols, scaleRows);
     var data = ImgData.data;
     
@@ -99,11 +98,9 @@ board.prototype.renderCurrentFrame = function(scale){
     for(var i = 0; i < scaleCols; i++){
         result = result.concat(arr[i]);
     }
-    console.log(data.length);
-    console.log(result.length);
+
     var j = 0;
     for(var i = 0; i < data.length; i+=4){
-    //for(var i = 0; i < result.length * 4; i+=4){
             data[i + 0] = result[j].getRed();
             data[i + 1] = result[j].getGreen();
             data[i + 2] = result[j].getBlue();
@@ -112,7 +109,10 @@ board.prototype.renderCurrentFrame = function(scale){
     }
 
     context.putImageData(ImgData, 0, 0);
+    /*
     var image = new Image();
     image.src = canvas.toDataURL();
     return image;
+    */
+    return context;
 }

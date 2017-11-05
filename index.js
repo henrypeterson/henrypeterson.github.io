@@ -62,7 +62,7 @@ function getFrameAsImage(){
 function processImages(){
     var encoder = new GIFEncoder();
     encoder.setRepeat(0);
-    encoder.setDelay(500);
+    encoder.setDelay(250);
     encoder.start();
     for(var i = 0; i < frames.length; i++){
         currentFrame.loadFrame(frames[i]);
